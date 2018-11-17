@@ -1,5 +1,7 @@
-from tkinter import *
-import backend
+# this is the file that builds the front end (GUI) using the tkinter library
+from tkinter import * #import everything from tkinter
+import backend # this is the sqlite file in the folder 
+
 
 def get_selected_row(event):
     global selected_tuple
@@ -35,12 +37,16 @@ def delete_command():
 def update_command():
     backend.update(selected_tuple[0],title_text.get(),author_text.get(),year_text.get(),isbn_text.get())
 
-window=Tk()
+    # GUI only starts from here
+    
+window=Tk() # for pop up window
 
-window.wm_title("BookStore")
+window.wm_title("BookStore") #giving title to the window 
+# starting from the window left top 
 
-l1=Label(window,text="Title")
-l1.grid(row=0,column=0)
+#GIVING LEBELS 
+l1=Label(window,text="Title") 
+l1.grid(row=0,column=0) #the whole window is divided into grid like a matrix to position the lebels , buttons , entry boxes ,list box , scroll bar 
 
 l2=Label(window,text="Author")
 l2.grid(row=0,column=2)
@@ -50,6 +56,8 @@ l3.grid(row=1,column=0)
 
 l4=Label(window,text="ISBN")
 l4.grid(row=1,column=2)
+
+# MAKING ENTRY BOXES
 
 title_text=StringVar()
 e1=Entry(window,textvariable=title_text)
@@ -67,16 +75,22 @@ isbn_text=StringVar()
 e4=Entry(window,textvariable=isbn_text)
 e4.grid(row=1,column=3)
 
+# MAKING THE LIST BOX
+
 list1=Listbox(window, height=6,width=35)
 list1.grid(row=2,column=0,rowspan=6,columnspan=2)
+
+# MAKING THE SCROLL BAR
 
 sb1=Scrollbar(window)
 sb1.grid(row=2,column=2,rowspan=6)
 
-list1.configure(yscrollcommand=sb1.set)
+list1.configure(yscrollcommand=sb1.set) #set the  scrollbar vertically  along the listbox
 sb1.configure(command=list1.yview)
 
 list1.bind('<<ListboxSelect>>',get_selected_row)
+
+# MAKING THE BUTTONS 
 
 b1=Button(window,text="View all", width=12,command=view_command)
 b1.grid(row=2,column=3)
@@ -96,4 +110,4 @@ b5.grid(row=6,column=3)
 b6=Button(window,text="Close", width=12,command=window.destroy)
 b6.grid(row=7,column=3)
 
-window.mainloop()
+window.mainloop() #all the GUI required methods are written between window=tk() and window.mainloop()
