@@ -92,7 +92,7 @@ list1.bind('<<ListboxSelect>>',get_selected_row)
 
 # MAKING THE BUTTONS 
 
-b1=Button(window,text="View all", width=12,command=view_command)
+b1=Button(window,text="View all", width=12,command=view_command) #the command attribute is used to perform operations mentioned in the backend file 
 b1.grid(row=2,column=3)
 
 b2=Button(window,text="Search entry", width=12,command=search_command)
